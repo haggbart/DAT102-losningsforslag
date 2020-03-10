@@ -31,28 +31,27 @@ public class Balansering {
             if (parentesType(c) == 0) {
                 parenteser.push(new Parentes(c, linje + 1, i + 1));
             } else if (parentesType(c) == 1) {
-            	if (parenteser.isEmpty()) {
-					System.out.println("Lukkesymbol " + c + " på linje " + (linje + 1) +
-							", tegn nr " + (i+1) + " mangler tilsvarende åpnesymbol.");
-					System.exit(0);
-				}
+                if (parenteser.isEmpty()) {
+                    System.out.println("Lukkesymbol " + c + " på linje " + (linje + 1) +
+                            ", tegn nr " + (i + 1) + " mangler tilsvarende åpnesymbol.");
+                    System.exit(0);
+                }
                 if (!passer(parenteser.pop().getParentes(), c)) {
                     System.out.println("Lukkesymbol " + c + " på linje " + (linje + 1) +
-							", tegn nr " + (i+1) + " har feil åpnesymbol.");
+                            ", tegn nr " + (i + 1) + " har feil åpnesymbol.");
                     System.exit(0);
                 }
             }
         }
     }
 
-	/**
-	 *
-	 * @param tegn tegnet som sjekkes
-	 * @return returnerer parentestype:
-	 * 0: venstreparentes
-	 * 1: høyreparentes
-	 * -1: ugyldig parentes
-	 */
+    /**
+     * @param tegn tegnet som sjekkes
+     * @return returnerer parentestype:
+     * 0: venstreparentes
+     * 1: høyreparentes
+     * -1: ugyldig parentes
+     */
     private int parentesType(char tegn) {
         for (char c : venstreParenteser) {
             if (tegn == c) return 0;
@@ -82,16 +81,16 @@ public class Balansering {
 
             }
 
-			if (!parenteser.isEmpty()) {
-				if (parenteser.size() > 1) {
-					System.out.println("Flere lukkesymboler mangler:");
-				}
-				while (!parenteser.isEmpty()) {
-					Parentes parentes = parenteser.pop();
-					System.out.println("Åpnesymbol " + parentes + " på line " + parentes.getLinje() +
-							", tegn nr " + (parentes.getPosisjon()) + " har ikke tilsvarende lukkesymbol.");
-				}
-			} else {
+            if (!parenteser.isEmpty()) {
+                if (parenteser.size() > 1) {
+                    System.out.println("Flere lukkesymboler mangler:");
+                }
+                while (!parenteser.isEmpty()) {
+                    Parentes parentes = parenteser.pop();
+                    System.out.println("Åpnesymbol " + parentes + " på line " + parentes.getLinje() +
+                            ", tegn nr " + (parentes.getPosisjon()) + " har ikke tilsvarende lukkesymbol.");
+                }
+            } else {
                 System.out.println(filnavn + " er balansert.");
             }
 
